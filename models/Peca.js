@@ -2,24 +2,21 @@ const Sequelize = require('sequelize')
 const db = require('../database/db.js')
 
 module.exports = db.sequelize.define(
-    'funcionario',
+    'peca',
     {
-        id_funcionario: {
+        id_peca: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
-        }, 
-        nome: {
+        },
+        tipo_peca: {
             type: Sequelize.STRING,
         },
-        tipo: {
+        modelo_peca: {
+            type: Sequelize.STRING,
+        },
+        quantidade: {
             type: Sequelize.INTEGER,
-        },
-        email: {
-            type: Sequelize.STRING,
-        },
-        senha: {
-            type: Sequelize.STRING,
         }
     },
     {

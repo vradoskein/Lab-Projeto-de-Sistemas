@@ -2,24 +2,16 @@ const Sequelize = require('sequelize')
 const db = require('../database/db.js')
 
 module.exports = db.sequelize.define(
-    'funcionario',
+    'valeta',
     {
-        id_funcionario: {
+        numero_valeta: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
-        }, 
-        nome: {
-            type: Sequelize.STRING,
         },
-        tipo: {
-            type: Sequelize.INTEGER,
-        },
-        email: {
-            type: Sequelize.STRING,
-        },
-        senha: {
-            type: Sequelize.STRING,
+        disponibilidade: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: '1'
         }
     },
     {

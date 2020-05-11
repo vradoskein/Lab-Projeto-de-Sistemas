@@ -11,6 +11,9 @@ app.use(bodyParser.json());
 var Funcionarios = require('./routes/Funcionarios');
 app.use('/funcionarios', Funcionarios);
 
+var Onibus = require('./routes/Onibus');
+app.use('/onibus', Onibus);
+
 app.get('/', (req, res) => {
   res.redirect('/funcionarios/login');
 });

@@ -2,23 +2,14 @@ const Sequelize = require('sequelize')
 const db = require('../database/db.js')
 
 module.exports = db.sequelize.define(
-    'funcionario',
+    'ferramenta',
     {
-        id_funcionario: {
+        id_ferramenta: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
-        }, 
-        nome: {
-            type: Sequelize.STRING,
         },
-        tipo: {
-            type: Sequelize.INTEGER,
-        },
-        email: {
-            type: Sequelize.STRING,
-        },
-        senha: {
+        tipo_ferramenta: {
             type: Sequelize.STRING,
         }
     },
