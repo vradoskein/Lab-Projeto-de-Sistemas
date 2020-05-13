@@ -59,8 +59,7 @@ funcionarios.post('/login', (req, res) => {
           let tipo = funcionario.tipo;
           res.send(
             JSON.stringify({
-              token: token,
-              tipo: tipo,
+              token, // o mesmo que token: token
             })
           );
         } else {
