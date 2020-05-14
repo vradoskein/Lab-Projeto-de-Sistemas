@@ -7,7 +7,7 @@ import Profile from './components/Profile.js'
 import Register from './components/Register.js'
 import Login from './components/Login.js'
 import MecanicoPage from './components/MecanicoPage.js'
-import BusList from './components/BusList.js'
+import BusList from './components/Bus/BusList.js'
 import Gerente from './components/Gerente.js'
 
 function App() {

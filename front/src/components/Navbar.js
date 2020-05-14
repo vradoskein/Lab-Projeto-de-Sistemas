@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 class Landing extends Component {
   logOut(e) {
-    e.preventDefault()
-    localStorage.removeItem('usertoken')
-    localStorage.removeItem('usertype');
-    this.props.history.push(`/`)
+    e.preventDefault();
+    localStorage.removeItem('usertoken');
+    this.props.history.push(`/`);
   }
 
   render() {
@@ -23,8 +23,27 @@ class Landing extends Component {
           </Link>
         </li> */}
       </ul>
-    )
-    
+    );
+
+    const userGerente = (
+      <ul className="navbar-nav">
+        <li className="nav-item">
+          <Link to="/gerente" className="nav-link">
+            Gerente
+          </Link>
+        </li>
+      </ul>
+    );
+
+    const userMecanico = (
+      <ul className="navbar-nav">
+        <li className="nav-item">
+          <Link to="/mecanico" className="nav-link">
+            Mecanico
+          </Link>
+        </li>
+      </ul>
+    );
 
     const userLink = (
       <ul className="navbar-nav">
@@ -33,13 +52,18 @@ class Landing extends Component {
             User
           </Link>
         </li>
+        {localStorage.usertoken
+          ? jwt_decode(localStorage.usertoken).tipo === 1
+            ? userGerente
+            : userMecanico
+          : ''}
         <li className="nav-item">
           <a href="" onClick={this.logOut.bind(this)} className="nav-link">
             Logout
           </a>
         </li>
       </ul>
-    )
+    );
 
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
@@ -69,8 +93,8 @@ class Landing extends Component {
           {localStorage.usertoken ? userLink : loginRegLink}
         </div>
       </nav>
-    )
+    );
   }
 }
 
-export default withRouter(Landing) 
+export default withRouter(Landing);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { login } from './UserFunctions';
+import { login } from '../functions/UserFunctions';
+import jwt_decode from 'jwt-decode';
 
 class Login extends Component {
   constructor() {
@@ -27,12 +28,13 @@ class Login extends Component {
 
     login(user).then((res) => {
       //colocar condicao pra se for mecanico
-      let type = localStorage.getItem("usertype");
-      if (type === '1') {
+      const token = localStorage.getItem('usertoken');
+      const type = jwt_decode(token).tipo;
+      if (type === 1) {
         if (res) {
           this.props.history.push('/gerente');
         }
-      }else if (type === '2') {
+      } else if (type === 2) {
         if (res) {
           this.props.history.push('/mecanico');
         }
