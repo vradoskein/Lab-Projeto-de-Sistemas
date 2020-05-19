@@ -32,6 +32,11 @@ class Landing extends Component {
             Gerente
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/gerente/oficina" className="nav-link">
+            Oficina
+          </Link>
+        </li>
       </ul>
     );
 
@@ -40,6 +45,11 @@ class Landing extends Component {
         <li className="nav-item">
           <Link to="/mecanico" className="nav-link">
             Mecanico
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/mecanico/oficina" className="nav-link">
+            Oficina
           </Link>
         </li>
       </ul>

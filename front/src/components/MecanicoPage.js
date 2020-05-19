@@ -27,7 +27,6 @@ class MecanicoPage extends Component {
     return (
       <div>
         {this.renderRedirect()}
-        <button onClick={this.setRedirect}>Redirect</button>
       </div>
     );
   }

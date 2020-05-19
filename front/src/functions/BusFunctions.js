@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const register = (newBus) => {
+export const register = async (newBus) => {
   return axios
     .post('http://localhost:5000/onibus/register', {
       id_onibus: newBus.id_onibus,
@@ -16,8 +16,15 @@ export const register = (newBus) => {
     });
 };
 
-export const list = () => {
+export const list = async () => {
   return axios.get('http://localhost:5000/onibus/list').then((res) => {
+    console.log(res);
+    return res.data;
+  });
+};
+
+export const listManut = async () => {
+  return axios.get('http://localhost:5000/onibus/listManut').then((res) => {
     console.log(res);
     return res.data;
   });

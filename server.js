@@ -14,6 +14,9 @@ app.use('/funcionarios', Funcionarios);
 var Onibus = require('./routes/Onibus');
 app.use('/onibus', Onibus);
 
+var Manutencao = require('./routes/Manutencao');
+app.use('/manutencao', Manutencao);
+
 app.get('/', (req, res) => {
   res.redirect('/funcionarios/login');
 });

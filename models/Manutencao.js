@@ -1,8 +1,10 @@
 const Sequelize = require('sequelize')
 const db = require('../database/db.js')
+const Valeta = require('./Valeta');
+const Onibus = require('./Onibus');
 
 module.exports = db.sequelize.define(
-    'manuntencao',
+    'manutencao',
     {
         id_manutencao: {
             type: Sequelize.INTEGER,
@@ -22,11 +24,11 @@ module.exports = db.sequelize.define(
                 key: 'id_onibus'
             }
         },
-        numero_valeta: {
+        id_valeta: {
             type: Sequelize.INTEGER,
             references: {
                 model: Valeta,
-                key: 'numero_valeta'
+                key: 'id_valeta'
             }
         }
     },
@@ -35,3 +37,10 @@ module.exports = db.sequelize.define(
         freezeTableName: true
     }
 )
+
+
+// StatusManutencao = [
+//     'em andamento',
+//     'agendada',
+//     'concluida'
+// ]

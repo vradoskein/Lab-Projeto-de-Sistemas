@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import BusList from './Bus/BusList';
+import BusList from './Bus/BusListGerente';
 import BusCreate from './Bus/BusCreate';
 import { list } from '../functions/BusFunctions';
+import Register from './Register';
+
 
 class Gerente extends Component {
   constructor() {
@@ -29,15 +31,17 @@ class Gerente extends Component {
     this.setState(newState);
   };
 
+  register = () => {
+    this.props.history.push('/register');
+  };
   render() {
     if (!this.state.listando && !this.state.criando) {
       return (
         <div>
           <div>
             <button onClick={this.createBus}>Criar onibus</button>
-          </div>
-          <div>
             <button onClick={this.listBus}>Listar onibus</button>
+            <button onClick={this.register}>Registrar Funcionario</button>
           </div>
         </div>
       );
@@ -45,7 +49,7 @@ class Gerente extends Component {
       return (
         <div>
           <div>
-            <button onClick={this.listBus}>Voltar</button>
+            <button onClick={this.listBus}>PIROGA</button>
           </div>
           <BusList busList={this.state.busList} />
         </div>
@@ -54,7 +58,7 @@ class Gerente extends Component {
       return (
         <div>
           <div>
-            <button onClick={this.createBus}>Voltar</button>
+            <button onClick={this.createBus}>PIROGA</button>
           </div>
           <BusCreate />
         </div>
