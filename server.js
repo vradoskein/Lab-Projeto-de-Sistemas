@@ -17,9 +17,15 @@ app.use('/onibus', Onibus);
 var Manutencao = require('./routes/Manutencao');
 app.use('/manutencao', Manutencao);
 
-app.get('/', (req, res) => {
-  res.redirect('/funcionarios/login');
+var Mecanicos = require('./routes/Mecanicos');
+app.use('/mecanicos', Mecanicos);
+
+app.get('/mecanicos/listManut', (req, res) => {
+  res.redirect('/mecanicos/listFree');
 });
+
+var Pneu = require('./routes/Pneu');
+app.use('/pneu', Pneu);
 
 app.listen(port, function () {
   console.log('Server is running on port ' + port);

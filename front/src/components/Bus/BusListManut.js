@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { listManut } from '../../functions/BusFunctions';
+import '../../App.css';
 
 class BusListManut extends Component {
   constructor() {
@@ -14,12 +15,13 @@ class BusListManut extends Component {
     const actualBustList = await listManut();
     console.log(this.state.busListManut);
     console.log(actualBustList);
-    // this.setState({ 
-    //   busListManut: actualBustList 
-    // });
+    this.setState({
+      busListManut: actualBustList,
+    });
     console.log(this.state.busListManut);
     this.state.busListManut.forEach((bus) => {
       const paragraph = document.createElement('p');
+      paragraph.style = 'font-size: 20px';
       paragraph.innerHTML = `<strong>id:</strong>  ${
         bus.id_onibus
       }  <strong>Data da última revisão:</strong> ${
@@ -34,7 +36,9 @@ class BusListManut extends Component {
     return (
       <div>
         <div id="mydiv">
-          <h1 id="myheader"> LISTAR OS ONIBUS AQUI TCHARLIN77 TROLLING mals</h1>
+          <h2 id="myheader" className="teste">
+            Lista de Ônibus em Manutenção :
+          </h2>
         </div>
       </div>
     );

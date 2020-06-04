@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../database/db.js')
+const Manutencao = require('./Manutencao');
+const Funcionario = require('./Funcionario');
 
 module.exports = db.sequelize.define(
     'escala_trabalho',

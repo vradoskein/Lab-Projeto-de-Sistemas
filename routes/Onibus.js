@@ -70,7 +70,7 @@ onibus_router.get('/listManut', async (req, res) => {
   // );
   // console.log(teste);
 
-  var manlist;
+  var manList;
 
   const man = await Manutencao.findAll({
     attributes: ['id_onibus'],
@@ -82,15 +82,15 @@ onibus_router.get('/listManut', async (req, res) => {
     m.forEach(obj => {
       list.push(obj.dataValues.id_onibus)
     });
-    console.log(list)
-    manlist = list;
+    console.log(list);
+    manList = list;
   });
   console.log(man);
 
   await Onibus.findAll({
     where: {
       id_onibus: {
-        [Op.or]: manlist,
+        [Op.or]: manList,
       },
     },
   }).then((onibus) => {
