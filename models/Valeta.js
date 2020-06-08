@@ -9,10 +9,6 @@ module.exports = db.sequelize.define(
             primaryKey: true,
             autoIncrement: true
         },
-        disponibilidade: {
-            type: Sequelize.BOOLEAN,
-            defaultValue: '1'
-        }
     },
     {
         timestamps: false,

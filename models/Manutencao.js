@@ -24,11 +24,11 @@ module.exports = db.sequelize.define(
                 key: 'id_onibus'
             }
         },
-        id_valeta: {
+        numero_valeta: {
             type: Sequelize.INTEGER,
             references: {
                 model: Valeta,
-                key: 'id_valeta'
+                key: 'numero_valeta'
             }
         }
     },

@@ -27,10 +27,33 @@ class Landing extends Component {
 
     const userGerente = (
       <ul className="navbar-nav">
-        <li className="nav-item">
-          <Link to="/gerente" className="nav-link">
-            Gerente
-          </Link>
+        <li className="nav-item dropdown">
+          <span
+            className="nav-link dropdown-toggle"
+            id="navbarDropdownMenuLink"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Gerência
+          </span>
+          <div
+            className="dropdown-menu"
+            aria-labelledby="navbarDropdownMenuLink"
+          >
+            <Link to="/listBus" className="dropdown-item">
+              Ônibus
+            </Link>
+            <Link to="/listFuncionarios" className="dropdown-item">
+              Funcionários
+            </Link>
+            <Link to="/listFerramentas" className="dropdown-item">
+              Ferramentas
+            </Link>
+            <Link to="/listPecas" className="dropdown-item">
+              Peças
+            </Link>
+          </div>
         </li>
         <li className="nav-item">
           <Link to="/gerente/oficina" className="nav-link">
@@ -42,11 +65,11 @@ class Landing extends Component {
 
     const userMecanico = (
       <ul className="navbar-nav">
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <Link to="/mecanico" className="nav-link">
             Mecanico
           </Link>
-        </li>
+        </li> */}
         <li className="nav-item">
           <Link to="/mecanico/oficina" className="nav-link">
             Oficina
@@ -59,7 +82,7 @@ class Landing extends Component {
       <ul className="navbar-nav">
         <li className="nav-item">
           <Link to="/profile" className="nav-link">
-            User
+            Profile
           </Link>
         </li>
         {localStorage.usertoken
@@ -68,9 +91,9 @@ class Landing extends Component {
             : userMecanico
           : ''}
         <li className="nav-item">
-          <a href="" onClick={this.logOut.bind(this)} className="nav-link">
+          <span onClick={this.logOut.bind(this)} className="nav-link">
             Logout
-          </a>
+          </span>
         </li>
       </ul>
     );

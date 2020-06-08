@@ -27,6 +27,15 @@ app.get('/mecanicos/listManut', (req, res) => {
 var Pneu = require('./routes/Pneu');
 app.use('/pneu', Pneu);
 
+var Pecas = require('./routes/Pecas');
+app.use('/pecas', Pecas);
+
+var Ferramentas = require('./routes/Ferramentas');
+app.use('/ferramentas', Ferramentas);
+
+var Valeta = require('./routes/Valeta');
+app.use('/valeta', Valeta);
+
 app.listen(port, function () {
   console.log('Server is running on port ' + port);
 });

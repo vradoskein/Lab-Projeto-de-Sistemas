@@ -72,4 +72,54 @@ funcionarios.post('/login', (req, res) => {
     });
 });
 
+funcionarios.get('/list', (req, res) => {
+  Funcionario.findAll()
+    .then((funcList) => {
+      res.send(funcList);
+    })
+    .catch((err) => {
+      console.error('error funcionario/list:', err);
+      res.send(null);
+    });
+});
+
+funcionarios.put('/updateFunc', (req, res) => {
+  bcrypt.hash(req.body.senha, 10, (err, hash) => {
+    Funcionario.update(
+      {
+        nome: req.body.nome,
+        tipo: req.body.tipo,
+        email: req.body.email,
+        senha: hash,
+      },
+      { where: { id_funcionario: req.body.id_funcionario } }
+    )
+      .then((result) => {
+        res.json({
+          result,
+        });
+        console.log(result);
+      })
+      .catch((err) => {
+        res.json({ message: 'erro amigo', result: false });
+        console.error('Erro Update Funcionario', err);
+      });
+  });
+});
+
+funcionarios.post('/deleteFunc', (req, res) => {
+  Funcionario.destroy({ where: { id_funcionario: req.body.id_funcionario } })
+    .then((result) => {
+      res.json({
+        result,
+      });
+      console.log(result);
+    })
+    .catch((err) => {
+      res.json({ message: 'erro amigo', result: false });
+      console.error('Erro Delete Funcionario', err);
+    });
+});
+
+
 module.exports = funcionarios;

@@ -32,11 +32,11 @@ class Login extends Component {
       const type = jwt_decode(token).tipo;
       if (type === 1) {
         if (res) {
-          this.props.history.push('/gerente');
+          this.props.history.push('/');
         }
       } else if (type === 2) {
         if (res) {
-          this.props.history.push('/mecanico');
+          this.props.history.push('/');
         }
       }
     });

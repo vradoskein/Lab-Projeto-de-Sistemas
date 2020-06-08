@@ -1,8 +1,11 @@
 const Sequelize = require('sequelize')
 const db = require('../database/db.js')
 
+const Manutencao = require('../models/Manutencao');
+const Peca = require('../models/Peca');
+
 module.exports = db.sequelize.define(
-    'escala_peca',
+    'escala_pecas',
     {
         id_manutencao: {
             primaryKey: true,

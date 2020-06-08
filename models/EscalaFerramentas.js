@@ -1,6 +1,9 @@
 const Sequelize = require('sequelize')
 const db = require('../database/db.js')
 
+const Ferramenta = require('../models/Ferramenta');
+const Manutencao = require('../models/Manutencao');
+
 module.exports = db.sequelize.define(
     'escala_ferramentas',
     {
@@ -12,12 +15,12 @@ module.exports = db.sequelize.define(
                 key: 'id_ferramenta'
             }
         },
-        id_funcionario: {
+        id_manutencao: {
             primaryKey: true,
             type: Sequelize.INTEGER,
             references: {
-                model: Funcionario,
-                key: 'id_funcionario'
+                model: Manutencao,
+                key: 'id_manutencao'
             }
         }
     },

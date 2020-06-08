@@ -9,7 +9,7 @@ export const register = (newUser) => {
       senha: newUser.senha,
     })
     .then((res) => {
-      console.log('Registered');
+      // console.log('Registered');
     });
 };
 
@@ -20,12 +20,12 @@ export const login = (user) => {
       senha: user.senha,
     })
     .then((res) => {
-      console.log('res', res);
-      console.log('data', res.data);
+      // console.log('res', res);
+      // console.log('data', res.data);
       localStorage.setItem('usertoken', res.data.token);
       return res.data;
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
     });
 };

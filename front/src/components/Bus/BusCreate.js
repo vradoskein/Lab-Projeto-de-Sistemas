@@ -72,14 +72,19 @@ class BusCreate extends Component {
       };
       console.log('bus:', newBus);
       register(newBus);
+      window.location.reload();
     } else {
-      console.log('Preencher tudo que eh obrigatorio seu hotario ! xD POGGOP');
+      alert('É necessário preencher todos os campos.');
     }
   };
 
+  back() {
+    window.location.reload();
+  }
+
   render() {
     return (
-      <div>
+      <div style={{ margin: 'auto', width: '50%' }}>
         <h1>id_onibus </h1>
         <input
           type="text"
@@ -143,7 +148,17 @@ class BusCreate extends Component {
           value={this.state.data_revisao.value}
           onChange={this.onChange}
         />
-        <button onClick={this.createBus}>Criar onibus</button>
+        <button onClick={this.createBus} type="button" class="btn btn-warning">
+          Criar onibus
+        </button>
+        <button
+          onClick={this.back}
+          type="button"
+          className="btn btn-dark"
+          style={{ float: 'right' }}
+        >
+          Cancelar
+        </button>
       </div>
     );
   }

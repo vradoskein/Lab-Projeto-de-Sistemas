@@ -30,25 +30,8 @@ mecanicos.get('/list', (req, res) => {
 });
 
 mecanicos.get('/listFree', async (req, res) => {
-  const manList = await Manutencao.findAll({
-    attributes: ['id_manutencao'],
-    where: {
-      status: ['em andamento', 'agendada'],
-    },
-  }).then((m) => {
-    var list = [];
-    m.forEach((obj) => {
-      list.push(obj.dataValues.id_manutencao);
-    });
-    return list;
-  });
-  console.log('manList: ', manList);
-
   const etList = await Escala_Trabalho.findAll({
     attributes: ['id_funcionario'],
-    where: {
-      id_manutencao: manList,
-    },
   }).then((et) => {
     var list = [];
     et.forEach((obj) => {
@@ -74,6 +57,30 @@ mecanicos.get('/listFree', async (req, res) => {
   console.log('funcList: ', funcList);
 
   res.json(funcList);
+});
+
+mecanicos.post('/getManutForMec', (req, res) => {
+  console.log(req);
+  Escala_Trabalho.findOne({
+    where: { id_funcionario: req.body.id_funcionario },
+  })
+    .then((escala) => {
+      id_man = escala.dataValues.id_manutencao;
+      Manutencao.findOne({ where: { id_manutencao: id_man } })
+        .then((man) => {
+          console.log('man', man);
+          res.json({ result: man.dataValues });
+          console.log(man);
+        })
+        .catch((err) => {
+          res.json({ message: 'erro amigo', result: false });
+          console.error('Erro get manut for manut for func', err);
+        });
+    })
+    .catch((err) => {
+      res.json({ message: 'erro amigo', result: false });
+      console.error('Erro manut for func', err);
+    });
 });
 
 module.exports = mecanicos;
