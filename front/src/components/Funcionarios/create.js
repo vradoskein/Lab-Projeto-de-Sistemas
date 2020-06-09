@@ -23,7 +23,7 @@ class FuncionariosCreate extends Component {
       },
     };
     this.onChange = this.onChange.bind(this);
-    this.createPeca = this.createPeca.bind(this);
+    this.createFunc = this.createFunc.bind(this);
     this.back = this.back.bind(this);
   }
 
@@ -45,17 +45,17 @@ class FuncionariosCreate extends Component {
     );
   };
 
-  createPeca = async () => {
+  createFunc = async () => {
     if (this.checkTouched()) {
-      console.log('createPeca()');
-      const newPeca = {
+      console.log('createFunc()');
+      const newFunc = {
         nome: this.state.nome.value,
         senha: this.state.senha.value,
         email: this.state.email.value,
         tipo: this.state.tipo.value,
       };
-      console.log('peca:', newPeca);
-      await register(newPeca);
+      console.log('func:', newFunc);
+      await register(newFunc);
       window.location.reload();
     } else {
       alert('É necessário preencher todos os campos.');
@@ -105,8 +105,8 @@ class FuncionariosCreate extends Component {
           value={this.state.tipo.value}
           onChange={this.onChange}
         />
-        <button onClick={this.createPeca} type="button" className="btn btn-warning">
-          Registrar Peça
+        <button onClick={this.createFunc} type="button" className="btn btn-warning">
+          Registrar Funcionario
         </button>
         <button
           onClick={this.back}

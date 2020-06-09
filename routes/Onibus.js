@@ -127,7 +127,7 @@ onibus_router.get('/listManut', async (req, res) => {
   await Onibus.findAll({
     where: {
       id_onibus: {
-        [Op.or]: manList,
+        [Op.in]: manList,
       },
     },
   })
@@ -165,15 +165,12 @@ onibus_router.put('/updateBus', (req, res) => {
     })
     .catch((err) => {
       res.json({ message: 'erro amigo', result: false });
-      console.error(
-        'erro update bus',
-        err
-      );
+      console.error('erro update bus', err);
     });
 });
 
 onibus_router.post('/deleteBus', (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   Onibus.destroy({ where: { id_onibus: req.body.id_onibus } })
     .then((result) => {
       res.json({ message: 'sucesso amigo', result: true });
@@ -185,6 +182,33 @@ onibus_router.post('/deleteBus', (req, res) => {
         'DEU ERRO NO DELETE DO ONIBUS. POR FAVOR VERIFIQUE O CODIGO PARA CERTIFICAR QUE VOCE NAO FEZ BESTEIRA. OBRIGADO PELA ATENÇÃO E TENHA UMA BOA TARDE :)',
         err
       );
+    });
+});
+
+onibus_router.get('/getOnibusForManut', async (req, res) => {
+  let date = new Date();
+  date.setMonth(date.getMonth() - 6);
+  year = date.getFullYear();
+  month = date.getMonth();
+  day = date.getDate();
+  string_date = year + '-' + month + '-' + day;
+  console.log(string_date);
+
+  await Onibus.findAll({
+    where: {
+      [Op.or]: [
+        { km_motor: { [Op.gte]: 10000 } },
+        { data_revisao: {[Op.or]: [{ [Op.lte]: string_date }, null] }},
+        // { data_revisao:  },
+      ],
+    },
+  })
+    .then((result) => {
+      res.json({ result });
+    })
+    .catch((err) => {
+      res.json({ message: 'erro amigo', result: false });
+      console.error('erro getOnibusForManut', err);
     });
 });
 

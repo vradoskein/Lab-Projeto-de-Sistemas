@@ -3,7 +3,6 @@ import axios from 'axios';
 export const register = async (newPneu) => {
   return axios
     .post('http://localhost:5000/pneu/register', {
-      id_pneu: newPneu.id_pneu,
       km_pneu: newPneu.km_pneu,
       modelo_pneu: newPneu.modelo_pneu,
       tipo_pneu: newPneu.tipo_pneu,
@@ -45,4 +44,24 @@ export const listFree = async (id) => {
     // console.log('listFree', res);
     return res.data;
   });
+};
+
+export const updatePneu = async (newPneu) => {
+  return axios
+    .put('http://localhost:5000/pneu/updatePneu', newPneu)
+    .then((res) => {
+      // console.log(res);
+      return res.data;
+    });
+};
+
+export const deletePneu = async (id_pneu) => {
+  return axios
+    .post('http://localhost:5000/pneu/deletePneu', {
+      id_pneu,
+    })
+    .then((res) => {
+      // console.log(res);
+      return res.data;
+    });
 };

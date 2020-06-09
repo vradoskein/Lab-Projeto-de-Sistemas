@@ -53,6 +53,9 @@ class Landing extends Component {
             <Link to="/listPecas" className="dropdown-item">
               Peças
             </Link>
+            <Link to="/listPneus" className="dropdown-item">
+              Pneus
+            </Link>
           </div>
         </li>
         <li className="nav-item">

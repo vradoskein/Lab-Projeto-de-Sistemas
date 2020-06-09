@@ -54,3 +54,10 @@ export const listManut = async () => {
     return res.data;
   });
 };
+
+export const getBusNeedManut = async () => {
+  return axios.get('http://localhost:5000/onibus/getOnibusForManut').then((res) => {
+    // console.log(res);
+    return res.data.result;
+  });
+};

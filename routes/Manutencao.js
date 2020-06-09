@@ -6,6 +6,7 @@ const Manutencao = require('../models/Manutencao');
 manutencao_router.use(cors());
 
 const EscalaTrabalho = require('../models/EscalaTrabalho');
+const Onibus = require('../models/Onibus');
 
 process.env.SECRET_KEY = 'secret';
 
@@ -116,16 +117,45 @@ manutencao_router.post('/registerWork', async (req, res) => {
 });
 
 manutencao_router.put('/endManut', async (req, res) => {
-  await Manutencao.update(
-    { status: 'concluída' },
-    { where: { id_manutencao: req.body.id_manutencao } }
-  )
+  let date = new Date();
+  year = date.getFullYear();
+  month =
+    date.getMonth() < 9 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+  day = date.getDate().length === 1 ? '0' + date.getDate() : date.getDate();
+  string_date = year + '-' + month + '-' + day;
+  let dados = {
+    km_motor: 0,
+    data_revisao: string_date,
+  };
+
+  await Manutencao.update({status: 'concluida'}, {
+    where: { id_manutencao: req.body.id_manutencao },
+  })
     .then((result) => {
       console.log(result);
     })
     .catch((err) => {
       res.json({ message: 'erro amigo', result: false });
       console.error('erro update manut', err);
+    });
+
+  await Manutencao.findOne({ where: { id_manutencao: req.body.id_manutencao } })
+    .then((result) => {
+      Onibus.update(
+        dados,
+        { where: { id_onibus: result.dataValues.id_onibus } }
+      )
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {
+          res.json({ message: 'erro amigo', result: false });
+          console.error('erro update manut update onibus', err);
+        });
+    })
+    .catch((err) => {
+      res.json({ message: 'erro amigo', result: false });
+      console.error('erro update manut search manut', err);
     });
 
   await EscalaTrabalho.destroy({
@@ -137,7 +167,7 @@ manutencao_router.put('/endManut', async (req, res) => {
     })
     .catch((err) => {
       res.json({ message: 'erro amigo', result: false });
-      console.error('erro update manut', err);
+      console.error('erro update manut escala trab', err);
     });
 });
 

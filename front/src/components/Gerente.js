@@ -49,7 +49,7 @@ class Gerente extends Component {
       return (
         <div>
           <div>
-            <button onClick={this.listBus}>PIROGA</button>
+            <button onClick={this.listBus}>Voltar</button>
           </div>
           <BusList busList={this.state.busList} />
         </div>
@@ -58,7 +58,7 @@ class Gerente extends Component {
       return (
         <div>
           <div>
-            <button onClick={this.createBus}>PIROGA</button>
+            <button onClick={this.createBus}>Voltar</button>
           </div>
           <BusCreate />
         </div>

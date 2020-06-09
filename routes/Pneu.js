@@ -26,47 +26,24 @@ pneu_router.post('/register', (req, res) => {
   };
   console.log(dados);
 
-  Pneu.findOne({
-    where: {
-      id_pneu: dados.id_pneu,
-    },
+  Onibus.findOne({where: {id_onibus: req.body.id_onibus}})
+  .then((onibus) => {
+    if(onibus){
+      Pneu.create(dados)
+      .then((pneu) => {
+        console.log(pneu);
+        res.send(pneu);
+      })
+      .catch((err) => {
+        console.error('error pneu/register:', err);
+        res.send(null);
+      });
+    }
   })
-    .then((pneu) => {
-      if (!pneu) {
-        Onibus.findOne({
-          where: {
-            id_onibus: dados.id_onibus,
-          },
-        })
-          .then((onibus) => {
-            if (!!onibus) {
-              Pneu.create(dados)
-                .then((newPneu) => {
-                  res.json({
-                    status:
-                      newPneu.id_pneu +
-                      ' registrado ao onibus ' +
-                      newPneu.id_onibus,
-                  });
-                })
-                .catch((err) => {
-                  res.send('error: ' + err);
-                });
-            } else {
-              console.log('onibus', onibus);
-              res.json({ success: false, message: `Couldn't get ` });
-            }
-          })
-          .catch((err) => {
-            res.send('error: ' + err);
-          });
-      } else {
-        res.json({ error: 'Pneu já existe' });
-      }
-    })
-    .catch((err) => {
-      res.send('error: ' + err);
-    });
+  .catch((err) => {
+    console.error('error pneu:', err);
+    res.send(null);
+  });
 });
 
 pneu_router.get('/list', (req, res) => {
@@ -150,6 +127,46 @@ pneu_router.get('/listFree', async (req, res) => {
     })
     .catch((err) => {
       console.error(`/listManut Onibus.findAll error:`, err);
+    });
+});
+
+pneu_router.put('/updatePneu', (req, res) => {
+  Pneu.update(
+    {
+      km_pneu: req.body.km_pneu, 
+      modelo_pneu: req.body.modelo_pneu,
+      tipo_pneu: req.body.tipo_pneu,
+      posicao_pneu: req.body.posicao_pneu,
+    },
+    {
+      where: { id_pneu: req.body.id_pneu },
+    }
+  )
+    .then((result) => {
+      res.json({
+        result,
+      });
+      console.log(result);
+    })
+    .catch((err) => {
+      res.json({ message: 'erro amigo', result: false });
+      console.error('erro update pneu', err);
+    });
+});
+
+pneu_router.post('/deletePneu', (req, res) => {
+  console.log(req.body);
+  Pneu.destroy({ where: { id_pneu: req.body.id_pneu } })
+    .then((result) => {
+      res.json({ message: 'sucesso amigo', result: true });
+      console.log(result);
+    })
+    .catch((err) => {
+      res.json({ message: 'erro amigo', result: false });
+      console.error(
+        'erro pneu',
+        err
+      );
     });
 });
 

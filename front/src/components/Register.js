@@ -42,7 +42,7 @@ class Register extends Component {
     return (
       <div className="container">
         <div>
-        <button onClick={this.gotoGerente}>PIROGA</button>
+        <button onClick={this.gotoGerente}>Voltar</button>
         </div>
         <div className="row">
           <div className="col-md-6 mt-5 mx-auto">

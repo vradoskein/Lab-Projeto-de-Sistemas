@@ -183,7 +183,7 @@ class PaginaOficinaGerente extends Component {
           id_funcionario: mecSelected,
           numero_valeta: valSelected,
         });
-      // window.location.reload();
+      window.location.reload();
     };
 
     document.getElementById('top-div').appendChild(startManut);
@@ -225,7 +225,7 @@ class PaginaOficinaGerente extends Component {
           id_onibus: manutSelected,
           id_funcionario: mecSelected,
         });
-      // window.location.reload();
+      window.location.reload();
     };
 
     document.getElementById('top-div').appendChild(alocarMecBtn);

@@ -55,7 +55,7 @@ class Login extends Component {
                   type="email"
                   className="form-control"
                   name="email"
-                  placeholder="Digite seu e-mai"
+                  placeholder="Digite seu e-mail"
                   value={this.state.email}
                   onChange={this.onChange}
                 />

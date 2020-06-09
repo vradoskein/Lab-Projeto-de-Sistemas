@@ -53,7 +53,7 @@ class Paginafuncionarios extends Component {
       newButton.className = 'btn btn-danger';
       newButton.onclick = async () => {
         console.log(funcionario);
-        var res = await deleteFunc(funcionario.nome);
+        var res = await deleteFunc(funcionario.id_funcionario);
         if (!res.result) {
           alert('Cole, deletou nao !');
         } else {

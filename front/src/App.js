@@ -12,6 +12,7 @@ import PaginaOficinaMecanico from './components/Oficina/PaginaOficinaMecanico';
 import PaginaOficinaGerente from './components/Oficina/PaginaOficinaGerente';
 import PaginaOnibus from './components/Bus/PaginaOnibus.js';
 import PaginaPecas from './components/Pecas/page.js';
+import PaginaPneus from './components/Pneus/page.js';
 import PaginaFuncionarios from './components/Funcionarios/page.js';
 import PaginaFerramentas from './components/Ferramentas/page';
 
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/mecanico" component={MecanicoPage} />
           <Route exact path="/listBus" component={PaginaOnibus} />
+          <Route exact path="/listPneus" component={PaginaPneus} />
           <Route exact path="/listPecas" component={PaginaPecas} />
           <Route exact path="/listFuncionarios" component={PaginaFuncionarios} />
           <Route exact path="/listFerramentas" component={PaginaFerramentas} />
